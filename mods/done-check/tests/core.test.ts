@@ -41,6 +41,11 @@ describe('what counts as a verification', () => {
       'Invoke-WebRequest -Uri http://127.0.0.1:8080 -UseBasicParsing',
       'node --test',
       'deno test',
+      'bazel test //...',
+      'npx nx test app',
+      'nx run app:test',
+      'turbo run test',
+      'npx turbo run build',
     ]
     for (const c of yes) expect(checkCommand(c), c).not.toBeNull()
   })
@@ -61,6 +66,9 @@ describe('what counts as a verification', () => {
       'curl -s file.txt',
       'git commit -m "run npm test later"',
       'npm install',
+      'grep "bazel test //..."',
+      'grep "nx test"',
+      'grep "turbo run test"',
     ]
     for (const c of no) expect(checkCommand(c), c).toBeNull()
   })
